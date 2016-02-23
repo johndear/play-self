@@ -37,14 +37,17 @@ public class Main {
 //        Play.classloader.getAllClasses();
         
 //        3:
-        List<ApplicationClass> all = new ArrayList<ApplicationClass>();
-    	for (VirtualFile virtualFile : Play.javaPath) {
-    		Play.classloader.getAllClasses(virtualFile);
-        }
+//        List<ApplicationClass> all = new ArrayList<ApplicationClass>();
+//    	for (VirtualFile virtualFile : Play.javaPath) {
+//    		Play.classloader.getAllClasses(virtualFile);
+//        }
+//    	
+//    	for (ApplicationClass applicationClass : Play.classes.all()) {
+//            Class clazz = Play.classloader.loadApplicationClass(applicationClass.name);
+//        }
     	
-    	for (ApplicationClass applicationClass : Play.classes.all()) {
-            Class clazz = Play.classloader.loadApplicationClass(applicationClass.name);
-        }
+//    	controllers.TestAction
+    	Class clazz = Play.classloader.loadApplicationClass("controllers.TestAction");
         
     }
 }
