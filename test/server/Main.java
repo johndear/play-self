@@ -2,28 +2,19 @@ package server;
 
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.lang.reflect.Method;
 
-import play.Invoker;
-import play.Logger;
+import controllers.Application;
+import controllers.TestAction;
 import play.Play;
-import play.classloading.ApplicationClasses;
 import play.classloading.ApplicationClassloader;
-import play.classloading.ApplicationClasses.ApplicationClass;
-import play.plugins.PluginCollection;
-import play.server.Server;
-import play.server.PlayHandler.NettyInvocation;
-import play.vfs.VirtualFile;
+import play.utils.Java;
 
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		String appPath = "F:\\workspace\\play-self"; 
+		String appPath = "F:\\github\\play-self"; 
 		File root = new File(appPath); 
         Play.init(root, System.getProperty("play.id", ""));
         
@@ -45,9 +36,31 @@ public class Main {
 //    	for (ApplicationClass applicationClass : Play.classes.all()) {
 //            Class clazz = Play.classloader.loadApplicationClass(applicationClass.name);
 //        }
-    	
-//    	controllers.TestAction
-    	Class clazz = Play.classloader.loadApplicationClass("controllers.TestAction");
         
+        // genral => 系统AppClassLoader
+        Application app =new Application();
+        System.out.println(app.getClass().getClassLoader().getClass());
+        TestAction test =new TestAction();
+        System.out.println(test.getClass().getClassLoader().getClass());
+        
+    	
+    	// http => 自定义ApplicationClassloader
+        Play.classloader.getAllClasses();
+//        Class appClass = Play.classloader.getClassIgnoreCase("controllers.Application");
+    	Class controllerClass = Play.classloader.getClassIgnoreCase("controllers.TestAction"); // actionInvoker.resolve() -> getActionMethod()
+    	System.out.println(controllerClass.getClassLoader().getClass());
+    	Method actionMethod = Java.findActionMethod("test3", controllerClass);
+    	Object instance = controllerClass.newInstance();
+    	actionMethod.invoke(instance, args);
+    	
+    	
+    	// test
+    	Class clazz = Play.classloader.loadApplicationClass("controllers.TestAction");
+    	System.out.println(clazz.getClassLoader().getClass());
+    	Method m = clazz.getMethod("test2", null);
+    	Object obj = clazz.newInstance();
+    	m.invoke(obj, new Object[]{});
+    	
+    	
     }
 }

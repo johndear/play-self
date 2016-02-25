@@ -13,7 +13,7 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import play.Logger;
 import play.Play;
-//import play.PlayPlugin;
+import play.PlayPlugin;
 import play.classloading.enhancers.Enhancer;
 import play.exceptions.UnexpectedException;
 import play.vfs.VirtualFile;
@@ -205,7 +205,7 @@ public class ApplicationClasses {
         }
 
         static final ClassPool enhanceChecker_classPool = Enhancer.newClassPool();
-//        static final CtClass ctPlayPluginClass = enhanceChecker_classPool.makeClass(PlayPlugin.class.getName());
+        static final CtClass ctPlayPluginClass = enhanceChecker_classPool.makeClass(PlayPlugin.class.getName());
 
         /**
          * Enhance this class
@@ -224,9 +224,9 @@ public class ApplicationClasses {
                 boolean shouldEnhance = true;
                 try {
                     CtClass ctClass = enhanceChecker_classPool.makeClass(new ByteArrayInputStream(this.enhancedByteCode));
-//                    if (ctClass.subclassOf(ctPlayPluginClass)) {
-//                        shouldEnhance = false;
-//                    }
+                    if (ctClass.subclassOf(ctPlayPluginClass)) {
+                        shouldEnhance = false;
+                    }
                 } catch( Exception e) {
                     // nop
                 }

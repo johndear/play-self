@@ -17,5 +17,9 @@ public class Application extends Controller {
     	System.out.println("index...........");
         render();
     }
+    
+    public void hello(String name) {
+    	System.out.println("Hello!" + name);
+    }
 
 }
