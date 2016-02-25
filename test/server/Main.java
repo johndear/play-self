@@ -8,6 +8,8 @@ import controllers.Application;
 import controllers.TestAction;
 import play.Play;
 import play.classloading.ApplicationClassloader;
+import play.classloading.ApplicationClassloaderState;
+import play.classloading.HotswapAgent;
 import play.utils.Java;
 
 
@@ -57,10 +59,30 @@ public class Main {
     	// test
     	Class clazz = Play.classloader.loadApplicationClass("controllers.TestAction");
     	System.out.println(clazz.getClassLoader().getClass());
-    	Method m = clazz.getMethod("test2", null);
+    	Method m = clazz.getMethod("test3", null);
     	Object obj = clazz.newInstance();
     	m.invoke(obj, new Object[]{});
     	
+    	int i=0;
+    	while(i<50){
+			try {
+				// test
+//				Play.classloader.currentState = new ApplicationClassloaderState();
+				clazz = Play.classloader.loadApplicationClass("controllers.TestAction");
+//				HotswapAgent.enabled = true;
+				Play.classloader.detectChanges();
+				System.out.println(clazz.getClassLoader().getClass());
+				m = clazz.getMethod("test4", null);
+				obj = clazz.newInstance();
+				m.invoke(obj, new Object[]{});
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally{
+				Thread.sleep(3000);
+				i++;
+			}
+    	}
     	
+//    	Thread.sleep(60000);
     }
 }

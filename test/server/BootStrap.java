@@ -10,7 +10,7 @@ public class BootStrap {
 	
 	public static void main(String[] args) throws Exception {
 //        File root = new File(System.getProperty("application.path"));
-        String appPath = "F:\\workspace\\play-self"; 
+        String appPath = "F:\\github\\play-self"; 
         File root = new File(appPath);
         if (System.getProperty("precompiled", "false").equals("true")) {
             Play.usePrecompiled = true;

@@ -23,6 +23,10 @@ http://www.ibm.com/developerworks/cn/java/j-lo-hotdeploy/index.html?ca=drs- （�
 loadClass(String name) 使用指定的二进制名称来加载类
 resolveClass(Class<?> c)  链接指定的类。用于解析父类\接口 
 
+尝试热部署指令：
+F:\>java -classpath F:\github\play-self\lib\* -javaagent:a.jar -cp F:\b.jar -classpath F:\github\play-self\lib\*  server.Main
+========== instrumentation:sun.instrument.InstrumentationImpl@25e4e6db
+
 热部署商业化产品：
 JRebel
          

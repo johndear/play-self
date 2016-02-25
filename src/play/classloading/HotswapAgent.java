@@ -13,6 +13,7 @@ public class HotswapAgent {
     public static boolean enabled = false;
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
+    	System.out.println("========== instrumentation:" + instrumentation);
         HotswapAgent.instrumentation = instrumentation;
         HotswapAgent.enabled = true;
     }

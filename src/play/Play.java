@@ -195,7 +195,7 @@ public class Play {
         // load all play.static of exists
         initStaticStuff();
 
-        guessFrameworkPath();
+//        guessFrameworkPath();
 
         // Read the configuration file
         readConfiguration();
@@ -256,59 +256,59 @@ public class Play {
         javaPath.add(appRoot.child("app"));
         javaPath.add(appRoot.child("conf"));
 
-//        // Build basic templates path
-//        if (appRoot.child("app/views").exists()) {
-//            templatesPath = new ArrayList<VirtualFile>(2);
-//            templatesPath.add(appRoot.child("app/views"));
-//        } else {
-//            templatesPath = new ArrayList<VirtualFile>(1);
-//        }
+        // Build basic templates path
+        if (appRoot.child("app/views").exists()) {
+            templatesPath = new ArrayList<VirtualFile>(2);
+            templatesPath.add(appRoot.child("app/views"));
+        } else {
+            templatesPath = new ArrayList<VirtualFile>(1);
+        }
 
         // Main route file
-//        routes = appRoot.child("conf/routes");
+        routes = appRoot.child("conf/routes");
 
-//        // Plugin route files
-//        modulesRoutes = new HashMap<String, VirtualFile>(16);
-//
-//        // Load modules
-//        loadModules();
-//
-//        // Load the templates from the framework after the one from the modules
-//        templatesPath.add(VirtualFile.open(new File(frameworkPath, "framework/templates")));
-//
-//        // Enable a first classloader
-//        classloader = new ApplicationClassloader();
-//
-//        // Fix ctxPath
-//        if ("/".equals(Play.ctxPath)) {
-//            Play.ctxPath = "";
-//        }
-//
-//        // Default cookie domain
-//        Http.Cookie.defaultDomain = configuration.getProperty("application.defaultCookieDomain", null);
-//        if (Http.Cookie.defaultDomain!=null) {
-//            Logger.info("Using default cookie domain: " + Http.Cookie.defaultDomain);
-//        }
-//
-//        // Plugins
-//        pluginCollection.loadPlugins();
-//
-//        // Done !
-//        if (mode == Mode.PROD || System.getProperty("precompile") != null) {
-//            mode = Mode.PROD;
-//            if (preCompile() && System.getProperty("precompile") == null) {
-//                start();
-//            } else {
-//                return;
-//            }
-//        } else {
-//            Logger.warn("You're running Play! in DEV mode");
-//        }
-//
+        // Plugin route files
+        modulesRoutes = new HashMap<String, VirtualFile>(16);
+
+        // Load modules
+        loadModules();
+
+        // Load the templates from the framework after the one from the modules
+        templatesPath.add(VirtualFile.open(new File(frameworkPath, "framework/templates")));
+
+        // Enable a first classloader
+        classloader = new ApplicationClassloader();
+
+        // Fix ctxPath
+        if ("/".equals(Play.ctxPath)) {
+            Play.ctxPath = "";
+        }
+
+        // Default cookie domain
+        Http.Cookie.defaultDomain = configuration.getProperty("application.defaultCookieDomain", null);
+        if (Http.Cookie.defaultDomain!=null) {
+            Logger.info("Using default cookie domain: " + Http.Cookie.defaultDomain);
+        }
+
         // Plugins
-//        pluginCollection.onApplicationReady();
+        pluginCollection.loadPlugins();
 
-//        Play.initialized = true;
+        // Done !
+        if (mode == Mode.PROD || System.getProperty("precompile") != null) {
+            mode = Mode.PROD;
+            if (preCompile() && System.getProperty("precompile") == null) {
+                start();
+            } else {
+                return;
+            }
+        } else {
+            Logger.warn("You're running Play! in DEV mode");
+        }
+
+        // Plugins
+        pluginCollection.onApplicationReady();
+
+        Play.initialized = true;
     }
 
     public static void guessFrameworkPath() {

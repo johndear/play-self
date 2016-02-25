@@ -24,5 +24,16 @@ public class TestAction extends Controller {
 	    test.test();
 	    System.out.println("classLoader: "+ test.getClass().getClassLoader().getClass());
 	}
+	
+//	public void test4(){
+//		System.out.println("test=444=======");
+//		Application app =new Application();
+//		app.hello("123");
+//	    System.out.println("classLoader: "+ app.getClass().getClassLoader().getClass());
+//	    
+//	    Test test =new Test();
+//	    test.test();
+//	    System.out.println("classLoader: "+ test.getClass().getClassLoader().getClass());
+//	}
 
 }
