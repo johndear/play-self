@@ -22,6 +22,9 @@ resolveClass(Class<?> c)  链接指定的类。用于解析父类\接口
 F:\>java -classpath F:\github\play-self\lib\* -javaagent:a.jar -cp F:\b.jar -classpath F:\github\play-self\lib\*  server.Main
 ========== instrumentation:sun.instrument.InstrumentationImpl@25e4e6db
 
+本地调试：
+运行main方法时，在run config 中配置-javaagent:a.jar就可以了。
+
 热部署商业化产品：
 JRebel
          

@@ -60,5 +60,6 @@
 	<classpathentry kind="lib" path="lib/asm-5.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/play-guice-0.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/a.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
