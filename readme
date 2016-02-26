@@ -1,20 +1,15 @@
-定制类装入器
-您可能希望编写自己的类装入器，以便可以从备用存储库装入类、对用户代码分区或卸载类。
+浅谈ClassLoader
+http://www.cnblogs.com/Lawson/archive/2012/07/31/2616623.html
 
-编写自己的类装入器可能主要出于以下三个原因。
-
+自定义类加载器，可能主要出于以下三个原因：
 1、允许从备用存储库装入类。
 这是最常见的情况，在此情况下，应用程序开发者可能想要从其他位置装入类，例如，通过网络连接。
-
 2、对用户代码分区。
 这是应用程序开发者不常使用的情况，但在 servlet 引擎中广泛使用。
-
 3、允许卸载类。
 如果应用程序创建大量仅在有限期限内使用的类，那么这种情况非常有用。因为类装入器将保持其装入的类的高速缓存，所以在取消引用类装入器本身之前，不会卸载这些类。因此，绝不会卸载系统和扩展类，但是在卸载应用程序类的类装入器时会卸载应用程序类。
-
 有关类装入器的详细信息，请参阅 http://www.ibm.com/developerworks/java/library/j-dclp1/。这篇文章是该系列技术文档中的第一篇文章，可为您编写自己的类装入器提供帮助。
 原文摘抄：https://www-01.ibm.com/support/knowledgecenter/SSYKE2_7.0.0/com.ibm.java.lnx.70.doc/diag/understanding/cl_custom.html?cp=SS7JFU_8.5.5%2F7-3-1-2-2&lang=zh
-
 
 深入探索 Java热部署：
 http://www.ibm.com/developerworks/cn/java/j-lo-hotdeploy/index.html?ca=drs- （重点）

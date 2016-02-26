@@ -22,6 +22,7 @@ public class BootStrap {
         if (System.getProperty("precompile") == null) {
             new Server(args);
         } else {
+        	
             Logger.info("Done.");
         }
     }

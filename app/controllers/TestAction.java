@@ -1,7 +1,7 @@
 package controllers;
 
 import play.mvc.Controller;
-import self.Test;
+import server.Test;
 
 public class TestAction extends Controller {
 	
