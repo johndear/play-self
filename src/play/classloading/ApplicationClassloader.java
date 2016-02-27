@@ -21,17 +21,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import javaagent.HotswapAgent;
 import play.Logger;
 import play.Play;
-import play.classloading.hash.ClassStateHashCreator;
-import play.vfs.VirtualFile;
 //import play.cache.Cache;
 import play.classloading.ApplicationClasses.ApplicationClass;
+import play.classloading.hash.ClassStateHashCreator;
 import play.exceptions.UnexpectedException;
 import play.libs.IO;
+import play.vfs.VirtualFile;
 
 /**
  * The application classLoader. 

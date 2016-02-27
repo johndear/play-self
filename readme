@@ -1,3 +1,11 @@
+概念：
+在类加载器中，java类只能被加载一次，并且无法卸载。那是不是可以直接把类加载器给换了？答案是可以的，我们可以自定义类加载器，并重写ClassLoader的findClass方法。
+想要实现热部署可以分以下三个步骤：
+1、销毁该自定义ClassLoader
+2、更新class类文件
+3、创建新的ClassLoader去加载更新后的class类文件。
+参考：http://www.tuicool.com/articles/j2yyuyi
+
 浅谈ClassLoader
 http://www.cnblogs.com/Lawson/archive/2012/07/31/2616623.html
 
@@ -11,8 +19,6 @@ http://www.cnblogs.com/Lawson/archive/2012/07/31/2616623.html
 有关类装入器的详细信息，请参阅 http://www.ibm.com/developerworks/java/library/j-dclp1/。这篇文章是该系列技术文档中的第一篇文章，可为您编写自己的类装入器提供帮助。
 原文摘抄：https://www-01.ibm.com/support/knowledgecenter/SSYKE2_7.0.0/com.ibm.java.lnx.70.doc/diag/understanding/cl_custom.html?cp=SS7JFU_8.5.5%2F7-3-1-2-2&lang=zh
 
-深入探索 Java热部署：
-http://www.ibm.com/developerworks/cn/java/j-lo-hotdeploy/index.html?ca=drs- （重点）
 
 重要的API：
 loadClass(String name) 使用指定的二进制名称来加载类
@@ -25,6 +31,18 @@ F:\>java -classpath F:\github\play-self\lib\* -javaagent:a.jar -cp F:\b.jar -cla
 本地调试：
 运行main方法时，在run config 中配置-javaagent:a.jar就可以了。
 
+实践:
+http://rejoy.iteye.com/blog/1806370
+http://www.blogjava.net/vincent/archive/2008/08/30/225804.html（与上一个雷同，但有点差别）
+http://blog.csdn.net/zhangdaiscott/article/details/23378023
+http://www.ibm.com/developerworks/cn/java/j-lo-hotswapcls/index.html
+深入探索 Java热部署：
+http://www.ibm.com/developerworks/cn/java/j-lo-hotdeploy/ （重点）
+热部署后卸载classloader时gc没有回收，可能导致内存泄露：
+http://flyfoxs.iteye.com/blog/2080502
+http://www.blogjava.net/heavensay/archive/2012/11/07/389685.html
+http://www.cnblogs.com/redcreen/archive/2011/06/02/2068758.html
 热部署商业化产品：
 JRebel
          
+play现在只有开发阶段使用热部署？？

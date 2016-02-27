@@ -453,13 +453,13 @@ public class Play {
 //                }
 //            }
 //
-//            if (mode == Mode.DEV) {
-//                // Need a new classloader
-//                classloader = new ApplicationClassloader();
-//                // Reload plugins
-//                pluginCollection.reloadApplicationPlugins();
-//
-//            }
+            if (mode == Mode.DEV) {
+                // Need a new classloader
+                classloader = new ApplicationClassloader();
+                // Reload plugins
+                pluginCollection.reloadApplicationPlugins();
+
+            }
 
 //            // Reload configuration
 //            readConfiguration();
@@ -502,7 +502,7 @@ public class Play {
 
 
             // Try to load all classes
-            Play.classloader.getAllClasses();
+//            Play.classloader.getAllClasses();
 
 //            // Routes
 //            Router.detectChanges(ctxPath);

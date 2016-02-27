@@ -4,19 +4,18 @@ package server;
 import java.io.File;
 import java.lang.reflect.Method;
 
-import controllers.Application;
-import controllers.TestAction;
 import play.Play;
 import play.classloading.ApplicationClassloader;
-import play.classloading.HotswapAgent;
 //import play.classloading.HotswapAgent;
 import play.utils.Java;
+import controllers.Application;
+import controllers.TestAction;
 
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		String appPath = "F:\\github\\play-self"; 
+		String appPath = "D:\\A-Github\\play-self"; 
 		File root = new File(appPath); 
         Play.init(root, System.getProperty("play.id", ""));
         
@@ -64,13 +63,13 @@ public class Main {
     	m.invoke(obj, new Object[]{});
     	
     	int i=0;
-    	while(i<50){
+    	while(i<20){
 			try {
-				// test
+				// 热部署
+				Play.detectChanges();
 //				Play.classloader.currentState = new ApplicationClassloaderState();
 				clazz = Play.classloader.loadApplicationClass("controllers.TestAction");
-				HotswapAgent.enabled = true;
-				Play.detectChanges();
+//				HotswapAgent.enabled = true;
 				System.out.println(clazz.getClassLoader().getClass());
 				m = clazz.getMethod("test4", null);
 				obj = clazz.newInstance();
