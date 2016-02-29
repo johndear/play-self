@@ -19,7 +19,15 @@ API：--可以参考ClassLoader源码
 	http://www.cnblogs.com/redcreen/archive/2011/06/02/2068758.html
 	热部署商业化产品：JRebel
 
-1）为什么使用自定义类加载器？？
+1）java如何实现热部署？？
+	在类加载器中，java类只能被加载一次，并且无法卸载。那是不是可以直接把类加载器给换了？答案是可以的，我们可以自定义类加载器，并重写ClassLoader的findClass方法。
+	想要实现热部署可以分以下三个步骤：
+	1、销毁该自定义ClassLoader
+	2、更新class类文件
+	3、创建新的ClassLoader去加载更新后的class类文件。
+	参考：http://www.tuicool.com/articles/j2yyuyi
+	
+2）为什么使用自定义类加载器？？
 	自定义类加载器，可能主要出于以下三个原因：
 	1、允许从备用存储库装入类。
 	这是最常见的情况，在此情况下，应用程序开发者可能想要从其他位置装入类，例如，通过网络连接。
@@ -30,14 +38,6 @@ API：--可以参考ClassLoader源码
 	有关类装入器的详细信息，请参阅 http://www.ibm.com/developerworks/java/library/j-dclp1/。这篇文章是该系列技术文档中的第一篇文章，可为您编写自己的类装入器提供帮助。
 	原文摘抄：https://www-01.ibm.com/support/knowledgecenter/SSYKE2_7.0.0/com.ibm.java.lnx.70.doc/diag/understanding/cl_custom.html?cp=SS7JFU_8.5.5%2F7-3-1-2-2&lang=zh
 
-2）java如何实现热部署？？
-	在类加载器中，java类只能被加载一次，并且无法卸载。那是不是可以直接把类加载器给换了？答案是可以的，我们可以自定义类加载器，并重写ClassLoader的findClass方法。
-	想要实现热部署可以分以下三个步骤：
-	1、销毁该自定义ClassLoader
-	2、更新class类文件
-	3、创建新的ClassLoader去加载更新后的class类文件。
-	参考：http://www.tuicool.com/articles/j2yyuyi
-         
 3）play现在只有开发阶段使用热部署？？
 	dev模式不会预先编译java文件，只是有请求到才会编译，而且更改源文件后可立即生效；
 	而 prod 模式下，一旦应用启动后就会自动编译所有 java 文件，而且不会重载修改的 java 文件，必须重启才能生效，包括模板文件和配置都是一样的， prod 是一种全优化的模式，所有的程序都会被缓存。
